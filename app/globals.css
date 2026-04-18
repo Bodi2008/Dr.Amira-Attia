@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --color-therapy-calm: #f0f7f4;
+  --color-therapy-blue: #2b6cb0;
+  --color-therapy-light-blue: #ebf8ff;
+}
+
+body {
+  font-family: var(--font-sans);
+}

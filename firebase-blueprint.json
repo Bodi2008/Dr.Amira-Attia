@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "Booking": {
+      "title": "Booking",
+      "description": "A therapy session booking",
+      "type": "object",
+      "properties": {
+        "patientName": { "type": "string" },
+        "phone": { "type": "string" },
+        "notes": { "type": "string" },
+        "country": { "type": "string" },
+        "sessionType": { "type": "string" },
+        "location": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "adjustedTime": { "type": "string" },
+        "id": { "type": "string" },
+        "referenceNumber": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["patientName", "phone", "country", "sessionType", "date", "time", "id", "referenceNumber", "createdAt", "status"]
+    },
+    "Schedule": {
+      "title": "Schedule",
+      "description": "Available schedule for centers",
+      "type": "object",
+      "properties": {
+        "egyptCenter": { "type": "object" },
+        "qatarCenter": { "type": "object" },
+        "online": { "type": "object" }
+      }
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Application settings",
+      "type": "object",
+      "properties": {
+        "countries": { "type": "array" },
+        "sessionTypes": { "type": "array" },
+        "branches": { "type": "array" }
+      }
+    }
+  },
+  "firestore": {
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Collection of all bookings"
+    },
+    "/system/schedule": {
+      "schema": "Schedule",
+      "description": "Global schedule settings"
+    },
+    "/system/settings": {
+      "schema": "Settings",
+      "description": "Global application settings"
+    }
+  }
+}

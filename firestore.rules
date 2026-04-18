@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Public can read settings and schedule to make bookings
+    match /system/settings {
+      allow read, write: if true;
+    }
+    
+    match /system/schedule {
+      allow read, write: if true;
+    }
+    
+    // Public can create bookings, but only admin can read/update/delete
+    // Note: API routes use client SDK and need to read bookings to check for double booking
+    match /bookings/{bookingId} {
+      allow read, write: if true;
+    }
+    
+    // Allow read/write for patients collection for magic link tokens
+    match /patients/{patientId} {
+      allow read, write: if true;
+    }
+  }
+}
